@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{commons/layout}">
+
+<head>
+	<meta charset="UTF-8">
+	<title>新規作成</title>
+</head>
+
+<body>
+	<div layout:fragment="content">
+		<h2>Create New Measurement Item</h2>
+		<form th:action="@{/new}" method="post" th:object="${measurementItemForm}">
+			<label>Item Name</label>
+			<input type="text" th:field="*{itemName}">
+			<br>
+			<div th:if="*{#fields.hasErrors('itemName')}">
+				<span th:errors="*{itemName}">itemName error messge</span>
+				<br>
+			</div>
+			<br>
+			<br>
+			
+			<label>Measure Value 1</label>
+			<input type="text" th:field="*{measureValue1}">
+			<br>
+			<div th:if="*{#fields.hasErrors('measureValue1')}">
+				<span th:errors="*{measureValue1}">measureValue1 error messge</span>
+				<br>
+			</div>
+			<label>type</label>
+			<select th:field="*{measureValue1Type}">
+				<option value="" selected style="display:none;">Choose Type</option>
+				<option value="text">text</option>
+				<option value="number">number</option>
+			</select>
+			<br>
+			<div th:if="*{#fields.hasErrors('measureValue1Type')}">
+				<span th:errors="*{measureValue1Type}">measureValue1Type error messge</span>
+				<br>
+			</div>
+			<br>
+
+			<label>Measure Value 2</label>
+			<input type="text" th:field="*{measureValue2}">
+			<br>
+			<div th:if="*{#fields.hasErrors('measureValue2')}">
+				<span th:errors="*{measureValue2}">measureValue2 error messge</span>
+				<br>
+			</div>
+			<label>type</label>
+			<select th:field="*{measureValue2Type}">
+				<option value="" selected style="display:none;">Choose Type</option>
+				<option value="text">text</option>
+				<option value="number">number</option>
+			</select>
+			<br>
+			<br>
+
+			<label>Measure Value 3</label>
+			<input type="text" th:field="*{measureValue3}">
+			<br>
+			<div th:if="*{#fields.hasErrors('measureValue3')}">
+				<span th:errors="*{measureValue3}">measureValue3 error messge</span>
+				<br>
+			</div>
+			<label>type</label>
+			<select th:field="*{measureValue3Type}">
+				<option value="" selected style="display:none;">Choose Type</option>
+				<option value="text">text</option>
+				<option value="number">number</option>
+			</select>
+			<br>
+			<br>
+
+			<label>Measure Value 4</label>
+			<input type="text" th:field="*{measureValue4}">
+			<br>
+			<div th:if="*{#fields.hasErrors('measureValue4')}">
+				<span th:errors="*{measureValue4}">measureValue4 error messge</span>
+				<br>
+			</div>
+			<label>type</label>
+			<select th:field="*{measureValue4Type}">
+				<option value="" selected style="display:none;">Choose Type</option>
+				<option value="text">text</option>
+				<option value="number">number</option>
+			</select>
+			<br>
+			<br>
+
+			<label>Measure Value 5</label>
+			<input type="text" th:field="*{measureValue5}">
+			<br>
+			<div th:if="*{#fields.hasErrors('measureValue5')}">
+				<span th:errors="*{measureValue5}">measureValue5 error messge</span>
+				<br>
+			</div>
+			<label>type</label>
+			<select th:field="*{measureValue5Type}">
+				<option value="" selected style="display:none;">Choose Type</option>
+				<option value="text">text</option>
+				<option value="number">number</option>
+			</select>
+			<br>
+			<br>
+
+			<label>Measure Value 6</label>
+			<input type="text" th:field="*{measureValue6}">
+			<br>
+			<div th:if="*{#fields.hasErrors('measureValue6')}">
+				<span th:errors="*{measureValue6}">measureValue6 error messge</span>
+				<br>
+			</div>
+			<label>type</label>
+			<select th:field="*{measureValue6Type}">
+				<option value="" selected style="display:none;">Choose Type</option>
+				<option value="text">text</option>
+				<option value="number">number</option>
+			</select>
+			<br>
+			<br>
+
+			<label>Measure Value 7</label>
+			<input type="text" th:field="*{measureValue7}">
+			<br>
+			<div th:if="*{#fields.hasErrors('measureValue7')}">
+				<span th:errors="*{measureValue7}">measureValue7 error messge</span>
+				<br>
+			</div>
+			<label>type</label>
+			<select th:field="*{measureValue7Type}">
+				<option value="" selected style="display:none;">Choose Type</option>
+				<option value="text">text</option>
+				<option value="number">number</option>
+			</select>
+			<br>
+			<br>
+
+			<label>Measure Value 8</label>
+			<input type="text" th:field="*{measureValue8}">
+			<br>
+			<div th:if="*{#fields.hasErrors('measureValue8')}">
+				<span th:errors="*{measureValue8}">measureValue8 error messge</span>
+				<br>
+			</div>
+			<label>type</label>
+			<select th:field="*{measureValue8Type}">
+				<option value="" selected style="display:none;">Choose Type</option>
+				<option value="text">text</option>
+				<option value="number">number</option>
+			</select>
+			<br>
+			<br>
+
+			<label>Measure Value 9</label>
+			<input type="text" th:field="*{measureValue9}">
+			<br>
+			<div th:if="*{#fields.hasErrors('measureValue9')}">
+				<span th:errors="*{measureValue9}">measureValue9 error messge</span>
+				<br>
+			</div>
+			<label>type</label>
+			<select th:field="*{measureValue9Type}">
+				<option value="" selected style="display:none;">Choose Type</option>
+				<option value="text">text</option>
+				<option value="number">number</option>
+			</select>
+			<br>
+			<br>
+
+			<label>Measure Value 10</label>
+			<input type="text" th:field="*{measureValue10}">
+			<br>
+			<div th:if="*{#fields.hasErrors('measureValue10')}">
+				<span th:errors="*{measureValue10}">measureValue10 error messge</span>
+				<br>
+			</div>
+			<label>type</label>
+			<select th:field="*{measureValue10Type}">
+				<option value="" selected style="display:none;">Choose Type</option>
+				<option value="text">text</option>
+				<option value="number">number</option>
+			</select>
+			<br>
+			<br>
+
+			<input type="submit">
+		</form>
+		<button type="button" onclick="location.href='/home'">Back</button>
+</body>
+
+</html>

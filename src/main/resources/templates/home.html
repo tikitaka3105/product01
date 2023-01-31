@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{commons/layout}">
+<head>
+<meta charset="UTF-8">
+<title>ホーム画面</title>
+</head>
+<body>
+<div layout:fragment="content">
+	<h2>HOME</h2>
+	<div th:object="${user}">
+		<h3 th:text="'こんにちは、' + *{username} + 'さん'">welcome message</h3>
+            <!-- <div th:if="${!#lists.isEmpty(user.measurementItemList)" th:each="measurementItem : ${user.measurementItemList}">
+                  <label th:text="${measurementItem.itemName}"></label>
+            </div> -->
+	</div>
+	<button type="button" onclick="location.href='/new'">New Measure Item</button>
+	<button type="button" onclick="location.href='/logout'">Logout</button>
+</div>
+</body>
+</html>
