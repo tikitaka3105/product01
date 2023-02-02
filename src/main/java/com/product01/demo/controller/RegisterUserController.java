@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import com.product01.demo.entity.User;
 import com.product01.demo.form.UserForm;
-import com.product01.demo.service.SaveUserService;
+import com.product01.demo.service.UserService;
 import com.product01.demo.service.commons.ConvertClassService;
 
 @Controller
@@ -20,7 +20,7 @@ public class RegisterUserController {
 	private ConvertClassService convertClassService;
 	
 	@Autowired
-	private SaveUserService saveUserService;
+	private UserService userService;
 	
 	@ModelAttribute
 	public UserForm setUpUserForm() {
@@ -40,7 +40,7 @@ public class RegisterUserController {
 		}
 		
 		User user = convertClassService.convertFormToUser(form);
-		User savedUser = saveUserService.save(user);
+		User savedUser = userService.save(user);
 		return "redirect:/login";
 	}
 }
