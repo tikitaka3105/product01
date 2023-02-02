@@ -41,7 +41,7 @@ public class MeasurementItemController {
 			return "newMeasurementItem";
 		}
 		MeasurementItem measurementItem = convertClassService.convertFormToMeasurementItem(form);
-		measurementItem.setUser(session.getUser());
+		measurementItem.setUserId(session.getUser().getId());
 		saveMeasurementItemService.saveMeasurementItem(measurementItem);
 		return "redirect:/home";
 	}

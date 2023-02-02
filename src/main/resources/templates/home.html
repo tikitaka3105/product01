@@ -10,11 +10,13 @@
 	<h2>HOME</h2>
 	<div th:object="${user}">
 		<h3 th:text="'こんにちは、' + *{username} + 'さん'">welcome message</h3>
-            <!-- <div th:if="${!#lists.isEmpty(user.measurementItemList)" th:each="measurementItem : ${user.measurementItemList}">
-                  <label th:text="${measurementItem.itemName}"></label>
-            </div> -->
+		<hr>
+            <div th:if="${measurementItemList != null}" th:each="measurementItem : ${measurementItemList}">
+                  <h4><a th:href="@{/measure/{id}(id=${measurementItem.id})}" th:text="${measurementItem.itemName}"></a></h4>
+            </div>
 	</div>
 	<button type="button" onclick="location.href='/new'">New Measure Item</button>
+	<hr>
 	<button type="button" onclick="location.href='/logout'">Logout</button>
 </div>
 </body>
