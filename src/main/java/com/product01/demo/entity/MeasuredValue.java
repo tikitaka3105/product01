@@ -7,17 +7,13 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "measured_values")
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
 public class MeasuredValue {
 	
@@ -26,9 +22,8 @@ public class MeasuredValue {
 	@Column(name = "id")
 	private Integer id;
 	
-	@ManyToOne
-	@JoinColumn(name = "measurement_item_id")
-	private MeasurementItem measurementItem;
+	@Column(name = "measurement_item_id")
+	private Integer measurementItemId;
 	
 	@Column(name = "measured_value1")
 	private String measuredValue1;
@@ -60,9 +55,6 @@ public class MeasuredValue {
 	@Column(name = "measured_value10")
 	private String measuredValue10;
 	
-	@Column(name = "measured_at")
-	private Timestamp measured_at;
-	
 	@Column(name = "created_at")
 	private Timestamp createdAt;
 	
@@ -73,5 +65,11 @@ public class MeasuredValue {
 	private Timestamp deletedAt;
 	
 	@Column(name = "delete_flag")
-	private Boolean delete_flag;
+	private Boolean deleteFlag;
+	
+	public MeasuredValue() {
+		this.createdAt = new Timestamp(System.currentTimeMillis());
+		this.updatedAt = new Timestamp(System.currentTimeMillis());
+		this.deleteFlag =false;
+	}
 }

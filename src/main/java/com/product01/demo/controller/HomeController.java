@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import com.product01.demo.entity.MeasurementItem;
 import com.product01.demo.entity.User;
-import com.product01.demo.service.HomeService;
+import com.product01.demo.service.MeasurementItemService;
 import com.product01.demo.sesion.LoginUserSession;
 
 @Controller
@@ -19,12 +19,12 @@ public class HomeController {
 	private LoginUserSession session;
 	
 	@Autowired
-	private HomeService service;
+	private MeasurementItemService measurementItemService;
 	
 	@GetMapping("home")
 	public String showHome(Model model) {
 		User user = session.getUser();
-		List<MeasurementItem> measurementItemList = service.findByUserId(user.getId());
+		List<MeasurementItem> measurementItemList = measurementItemService.findByUserId(user.getId());
 		model.addAttribute("user", user);
 		model.addAttribute("measurementItemList", measurementItemList);
 		return "home";

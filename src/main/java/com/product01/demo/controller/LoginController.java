@@ -14,14 +14,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import com.product01.demo.entity.User;
 import com.product01.demo.form.UserForm;
-import com.product01.demo.service.LoginService;
+import com.product01.demo.service.UserService;
 import com.product01.demo.sesion.LoginUserSession;
 
 @Controller
 public class LoginController {
 	
 	@Autowired
-	private LoginService loginService;
+	private UserService userService;
 	@Autowired
 	private MessageSource messageSource;
 	@Autowired
@@ -42,7 +42,7 @@ public class LoginController {
 		if(result.hasErrors()) {
 			return "login";
 		}
-		User user = loginService.findByUsername(form.getUsername());
+		User user = userService.findByUsername(form.getUsername());
 		if(user == null) {
 			model.addAttribute("loginFailureMsg", messageSource.getMessage("loginFailure", new String[] {}, Locale.getDefault()));
 			return "login";

@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import com.product01.demo.entity.MeasurementItem;
 import com.product01.demo.form.MeasurementItemForm;
-import com.product01.demo.service.SaveMeasurementItemService;
+import com.product01.demo.service.MeasurementItemService;
 import com.product01.demo.service.commons.ConvertClassService;
 import com.product01.demo.sesion.LoginUserSession;
 
@@ -23,7 +23,7 @@ public class MeasurementItemController {
 	@Autowired
 	private LoginUserSession session;
 	@Autowired
-	private SaveMeasurementItemService saveMeasurementItemService;
+	private MeasurementItemService measurementItemService;
 	
 	@ModelAttribute
 	public MeasurementItemForm setUpForm() {
@@ -42,7 +42,7 @@ public class MeasurementItemController {
 		}
 		MeasurementItem measurementItem = convertClassService.convertFormToMeasurementItem(form);
 		measurementItem.setUserId(session.getUser().getId());
-		saveMeasurementItemService.saveMeasurementItem(measurementItem);
+		measurementItemService.saveMeasurementItem(measurementItem);
 		return "redirect:/home";
 	}
 }
