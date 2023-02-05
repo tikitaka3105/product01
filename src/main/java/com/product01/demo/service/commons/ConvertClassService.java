@@ -1,5 +1,7 @@
 package com.product01.demo.service.commons;
 
+import java.sql.Timestamp;
+
 import org.springframework.stereotype.Service;
 
 import com.product01.demo.entity.MeasuredValue;
@@ -57,6 +59,8 @@ public class ConvertClassService {
 		measuredValue.setMeasuredValue8(form.getMeasuredValue8());
 		measuredValue.setMeasuredValue9(form.getMeasuredValue9());
 		measuredValue.setMeasuredValue10(form.getMeasuredValue10());
+		Timestamp measuredAt = Timestamp.valueOf(form.getMeasuredAt().replace("T", " ") + ":00");
+		measuredValue.setMeasuredAt(measuredAt);
 		return measuredValue;
 	}
 	

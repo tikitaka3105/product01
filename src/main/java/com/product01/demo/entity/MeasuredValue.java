@@ -67,6 +67,9 @@ public class MeasuredValue {
 	@Column(name = "delete_flag")
 	private Boolean deleteFlag;
 	
+	@Column(name = "measured_at")
+	private Timestamp measuredAt;
+	
 	public MeasuredValue() {
 		this.createdAt = new Timestamp(System.currentTimeMillis());
 		this.updatedAt = new Timestamp(System.currentTimeMillis());

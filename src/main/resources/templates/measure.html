@@ -1,15 +1,20 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorate="~{commons/layout}">
+
 <head>
 	<meta charset="UTF-8">
 	<title>記録</title>
 </head>
+
 <body>
 	<div layout:fragment="content">
 		<div th:object="${measuredValueForm}">
 			<h2 th:text="*{measurementItem.itemName}">itemname</h2>
 			<form th:action="@{/measure/{id}(id=${measuredValueForm.measurementItem.id})}" method="post">
+				<label>Measure Time</label>
+				<input type="datetime-local" th:field="*{measuredAt}">
+				<br>
 				<label th:text="*{measurementItem.measureValue1}"></label>
 				<div th:switch="*{measurementItem.measureValue1Type}">
 					<input th:case="text" type="text" th:field="*{measuredValue1}">
