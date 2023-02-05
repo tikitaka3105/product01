@@ -40,5 +40,7 @@ public class MeasuredValueForm {
 	@Size(max = 50)
 	private String measuredValue10;
 	
+	private String measuredAt;
+	
 	private MeasurementItem measurementItem;
 }
