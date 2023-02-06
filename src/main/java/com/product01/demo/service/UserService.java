@@ -11,18 +11,28 @@ import com.product01.demo.repository.UserCrudRepository;
 import jakarta.transaction.Transactional;
 
 @Service
-@Transactional
-public class HomeService {
+public class UserService {
 	
 	@Autowired
 	private UserCrudRepository repository;
 	
-	public User findUserById(int id) {
+	public User findById(int id) {
 		Optional<User> userOpt = repository.findById(id);
 		if(userOpt.isPresent()) {
 			return userOpt.get();
 		}else {
 			return null;
 		}
+	}
+	
+	public User findByUsername(String username) {
+		User user = repository.findByUsername(username);
+		return user;
+	}
+	
+	@Transactional
+	public User save(User user) {
+		User savedUser = repository.save(user);
+		return savedUser;
 	}
 }

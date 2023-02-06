@@ -10,7 +10,6 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -26,9 +25,8 @@ public class MeasurementItem {
 	@Column(name = "id")
 	private Integer id;
 	
-	@ManyToOne
-	@JoinColumn(name = "user_id", referencedColumnName = "id")
-	private User user;
+	@Column(name = "user_id")
+	private Integer userId;
 	
 	@Column(name = "item_name")
 	private String itemName;
@@ -75,7 +73,8 @@ public class MeasurementItem {
 	@Column(name = "delete_flag")
 	private Boolean deleteFlag;
 	
-	@OneToMany(mappedBy = "measurementItem", cascade = CascadeType.ALL)
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name = "measurement_item_id")
 	private List<MeasuredValue> measuredValueList;
 	
 	@Column(name = "measure_value1_type")

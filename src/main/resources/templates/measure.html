@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{commons/layout}">
+
+<head>
+	<meta charset="UTF-8">
+	<title>記録</title>
+</head>
+
+<body>
+	<div layout:fragment="content">
+		<div th:object="${measuredValueForm}">
+			<h2 th:text="*{measurementItem.itemName}">itemname</h2>
+			<form th:action="@{/measure/{id}(id=${measuredValueForm.measurementItem.id})}" method="post">
+				<label>Measure Time</label>
+				<input type="datetime-local" th:field="*{measuredAt}">
+				<br>
+				<label th:text="*{measurementItem.measureValue1}"></label>
+				<div th:switch="*{measurementItem.measureValue1Type}">
+					<input th:case="text" type="text" th:field="*{measuredValue1}">
+					<input th:case="number" type="number" th:field="*{measuredValue1}">
+				</div>
+				<label th:text="*{measurementItem.measureValue2}"></label>
+				<div th:switch="*{measurementItem.measureValue2Type}">
+					<input th:case="text" type="text" th:field="*{measuredValue2}">
+					<input th:case="number" type="number" th:field="*{measuredValue2}">
+				</div>
+				<label th:text="*{measurementItem.measureValue3}"></label>
+				<div th:switch="*{measurementItem.measureValue3Type}">
+					<input th:case="text" type="text" th:field="*{measuredValue3}">
+					<input th:case="number" type="number" th:field="*{measuredValue3}">
+				</div>
+				<label th:text="*{measurementItem.measureValue4}"></label>
+				<div th:switch="*{measurementItem.measureValue4Type}">
+					<input th:case="text" type="text" th:field="*{measuredValue4}">
+					<input th:case="number" type="number" th:field="*{measuredValue4}">
+				</div>
+				<label th:text="*{measurementItem.measureValue5}"></label>
+				<div th:switch="*{measurementItem.measureValue5Type}">
+					<input th:case="text" type="text" th:field="*{measuredValue5}">
+					<input th:case="number" type="number" th:field="*{measuredValue5}">
+				</div>
+		</div>
+		<button type="submit">record</button>
+		</form>
+		<hr>
+		<br>
+		<h2>Record History</h2>
+		<div th:object="${measurementItem}">
+			<div th:each="measuredValue : *{measuredValueList}">
+				<label th:text="${measuredValue.measuredAt}">measured timestamp</label>
+				<table>
+					<tr>
+						<td th:text="*{measureValue1}"></td>
+						<td th:text="${measuredValue.measuredValue1}"></td>
+					</tr>
+					<tr>
+						<td th:text="*{measureValue2}"></td>
+						<td th:text="${measuredValue.measuredValue2}"></td>
+					</tr>
+					<tr>
+						<td th:text="*{measureValue3}"></td>
+						<td th:text="${measuredValue.measuredValue3}"></td>
+					</tr>
+					<tr>
+						<td th:text="*{measureValue4}"></td>
+						<td th:text="${measuredValue.measuredValue4}"></td>
+					</tr>
+					<tr>
+						<td th:text="*{measureValue5}"></td>
+						<td th:text="${measuredValue.measuredValue5}"></td>
+					</tr>
+				</table>
+			</div>
+		</div>
+		<br>
+		<hr>
+		<button type="button" onclick="location.href='/home'">Back To Home</button>
+	</div>
+	</div>
+</body>
+
+</html>

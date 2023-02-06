@@ -1,9 +1,13 @@
 package com.product01.demo.service.commons;
 
+import java.sql.Timestamp;
+
 import org.springframework.stereotype.Service;
 
+import com.product01.demo.entity.MeasuredValue;
 import com.product01.demo.entity.MeasurementItem;
 import com.product01.demo.entity.User;
+import com.product01.demo.form.MeasuredValueForm;
 import com.product01.demo.form.MeasurementItemForm;
 import com.product01.demo.form.UserForm;
 
@@ -41,6 +45,23 @@ public class ConvertClassService {
 		measurementItem.setMeasureValue9Type(form.getMeasureValue9Type());
 		measurementItem.setMeasureValue10Type(form.getMeasureValue10Type());
 		return measurementItem;
+	}
+	
+	public MeasuredValue convertFormToMeasuredValue(MeasuredValueForm form) {
+		MeasuredValue measuredValue = new MeasuredValue();
+		measuredValue.setMeasuredValue1(form.getMeasuredValue1());
+		measuredValue.setMeasuredValue2(form.getMeasuredValue2());
+		measuredValue.setMeasuredValue3(form.getMeasuredValue3());
+		measuredValue.setMeasuredValue4(form.getMeasuredValue4());
+		measuredValue.setMeasuredValue5(form.getMeasuredValue5());
+		measuredValue.setMeasuredValue6(form.getMeasuredValue6());
+		measuredValue.setMeasuredValue7(form.getMeasuredValue7());
+		measuredValue.setMeasuredValue8(form.getMeasuredValue8());
+		measuredValue.setMeasuredValue9(form.getMeasuredValue9());
+		measuredValue.setMeasuredValue10(form.getMeasuredValue10());
+		Timestamp measuredAt = Timestamp.valueOf(form.getMeasuredAt().replace("T", " ") + ":00");
+		measuredValue.setMeasuredAt(measuredAt);
+		return measuredValue;
 	}
 	
 }
