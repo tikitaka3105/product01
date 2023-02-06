@@ -44,6 +44,37 @@
 		<button type="submit">record</button>
 		</form>
 		<hr>
+		<br>
+		<h2>Record History</h2>
+		<div th:object="${measurementItem}">
+			<div th:each="measuredValue : *{measuredValueList}">
+				<label th:text="${measuredValue.measuredAt}">measured timestamp</label>
+				<table>
+					<tr>
+						<td th:text="*{measureValue1}"></td>
+						<td th:text="${measuredValue.measuredValue1}"></td>
+					</tr>
+					<tr>
+						<td th:text="*{measureValue2}"></td>
+						<td th:text="${measuredValue.measuredValue2}"></td>
+					</tr>
+					<tr>
+						<td th:text="*{measureValue3}"></td>
+						<td th:text="${measuredValue.measuredValue3}"></td>
+					</tr>
+					<tr>
+						<td th:text="*{measureValue4}"></td>
+						<td th:text="${measuredValue.measuredValue4}"></td>
+					</tr>
+					<tr>
+						<td th:text="*{measureValue5}"></td>
+						<td th:text="${measuredValue.measuredValue5}"></td>
+					</tr>
+				</table>
+			</div>
+		</div>
+		<br>
+		<hr>
 		<button type="button" onclick="location.href='/home'">Back To Home</button>
 	</div>
 	</div>

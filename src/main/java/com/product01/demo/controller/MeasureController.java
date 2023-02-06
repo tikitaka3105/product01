@@ -39,7 +39,7 @@ public class MeasureController {
 	private MeasurementItem measurementItem;
 	
 	@ModelAttribute
-	public MeasuredValueForm setUpMeasuredValue(@PathVariable Integer id) {
+	public MeasuredValueForm setUpMeasuredValueForm(@PathVariable Integer id) {
 		measurementItem = measurementItemService.findById(id);
 		MeasuredValueForm measuredValueForm = new MeasuredValueForm();
 		measuredValueForm.setMeasurementItem(measurementItem);
@@ -47,11 +47,13 @@ public class MeasureController {
 	}
 	
 	@GetMapping
-	public String showMeasurePage() {
+	public String showMeasurePage(@PathVariable Integer id, Model model) {
 		User user = session.getUser();
 		if(!user.getId().equals(measurementItem.getUserId())) {
 			return "redirect:/home";
 		}
+		measurementItem.setMeasuredValueList(measuredValueService.findByMeasurementItemId(id));
+		model.addAttribute("measurementItem", measurementItem);
 		return "measure";
 	}
 	

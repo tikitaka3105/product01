@@ -1,5 +1,7 @@
 package com.product01.demo.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,5 +19,9 @@ public class MeasuredValueService {
 	@Transactional
 	public void saveMeasuredValue(MeasuredValue measuredValue) {
 		repository.save(measuredValue);
+	}
+	
+	public List<MeasuredValue> findByMeasurementItemId(Integer measurementItemId){
+		return repository.findByMeasurementItemId(measurementItemId);
 	}
 }
