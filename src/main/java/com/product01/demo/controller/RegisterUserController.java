@@ -3,44 +3,33 @@ package com.product01.demo.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import com.product01.demo.entity.User;
 import com.product01.demo.form.UserForm;
 import com.product01.demo.service.UserService;
-import com.product01.demo.service.commons.ConvertClassService;
+
+import jakarta.validation.Valid;
 
 @Controller
 public class RegisterUserController {
 	
 	@Autowired
-	private ConvertClassService convertClassService;
-	
-	@Autowired
 	private UserService userService;
 	
-	@ModelAttribute
-	public UserForm setUpUserForm() {
-		return new UserForm();
+	
+	@GetMapping("/registration")
+	public String showRegisterUserPage(@ModelAttribute("userForm") UserForm form) {
+		return "registration";
 	}
 	
-	
-	@GetMapping("register")
-	public String showRegisterUserPage() {
-		return "register";
-	}
-	
-	@PostMapping("register")
-	public String saveUser(@Validated UserForm form, BindingResult result) {
+	@PostMapping("/registration")
+	public String saveUser(@Valid @ModelAttribute("userForm") UserForm form, BindingResult result) {
 		if(result.hasErrors()) {
-			return "register";
+			return "registration";
 		}
-		
-		User user = convertClassService.convertFormToUser(form);
-		User savedUser = userService.save(user);
+		userService.userRegistration(form.getUsername(), form.getPassword());
 		return "redirect:/login";
 	}
 }
