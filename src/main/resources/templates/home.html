@@ -18,7 +18,9 @@
 	</div>
 	<button type="button" onclick="location.href='/new'">New Measure Item</button>
 	<hr>
-	<button type="button" onclick="location.href='/logout'">Logout</button>
+	<form th:action="@{/logout}" method="post">
+		<button type="submit">logout</button>
+	</form>
 </div>
 </body>
 </html>

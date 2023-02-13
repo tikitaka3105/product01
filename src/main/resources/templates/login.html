@@ -8,29 +8,22 @@
 <body>
 	<div layout:fragment="content">
 		<h2>login</h2>
-		<form th:action="@{/login}" method="post" th:object="${userForm}">
+		<form th:action="@{/login}" method="post">
 			<label>username</label>
-			<input type="text" th:field="*{username}">
-			<div th:if="*{#fields.hasErrors('username')}">
-				<span th:errors="*{username}">username error messge</span>
-			</div>
+			<input type="text" name="username">
 			<br>
 			<label>password</label>
-			<input type="password" th:field="*{password}">
-			<div th:if="*{#fields.hasErrors('password')}">
-				<span th:errors="*{password}">password error messge</span>
-			</div>
+			<input type="password" name="password">
 			<br>
 			<label>password (conf)</label>
-			<input type="password" th:field="*{passwordConf}">
-			<div th:if="*{#fields.hasErrors('passwordConf')}">
-				<span th:errors="*{passwordConf}">passwordConf error messge</span>
-			</div>
+			<input type="password" name="passwordConf">
 			<br>
 			<button type="submit">login</button>
-			<a th:href="@{/register}">register</a>
-			<div th:if="${loginFailure} != null">
-				<span th:text="${loginFailureMsg}">login failure message</span>
+			<a th:href="@{/registration}">register</a>
+			<div th:if="${param.error}">
+	    		<p th:if="${session[SPRING_SECURITY_LAST_EXCEPTION] != null}">
+	        		<span th:text="${session[SPRING_SECURITY_LAST_EXCEPTION].message}"></span>
+	    		</p>
 			</div>
 		</form>
 	</div>
