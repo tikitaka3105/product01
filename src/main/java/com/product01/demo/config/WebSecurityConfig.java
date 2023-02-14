@@ -26,7 +26,10 @@ public class WebSecurityConfig {
 					.requestMatchers("/js/**").permitAll()
 					.requestMatchers("/registration").permitAll()
 					.anyRequest().authenticated()
-			);
+			).logout(logout -> 
+				logout.logoutUrl("/logout")
+					.permitAll()
+					);
 		return http.build();
 	}
 	
