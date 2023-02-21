@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{commons/layout}">
+
+<head>
+	<meta charset="UTF-8">
+	<script type="text/javascript" src="/js/createMeasureItems.js"></script>
+	<link rel="stylesheet" href="/css/stylesheet.css">
+	<title>Create Measure Item</title>
+</head>
+
+<body>
+	<div layout:fragment="content">
+		<h2>CREATE MEASURE ITEM</h2>
+		<form th:action="@{/measure_items/new}" method="post" th:object="${measureSettingForm}">
+			<div id="inputs">
+				<label>title</label>: <input type="text" th:field="*{title}">
+				<span class="error" th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></span>
+				<hr>
+				<div class="one-set" th:each="item, status : ${measureSettingForm.measureItemSettingFormList}">
+					<label th:text="'No.' + ${status.index + 1} + ': '"></label>
+					<br>
+					<label>name:
+						<input type="text" th:field="*{measureItemSettingFormList[__${status.index}__].itemName}"
+							th:value="${item.itemName}" />
+					</label>
+					<span class="error"
+						th:if="${#fields.hasErrors('measureItemSettingFormList[__${status.index}__].itemName')}"
+						th:errors="*{measureItemSettingFormList[__${status.index}__].itemName}"></span>
+					<br>
+					<label>type:
+						<input type="text" th:field="*{measureItemSettingFormList[__${status.index}__].itemType}"
+							th:value="${item.itemType}" />
+					</label>
+					<span class="error"
+						th:if="${#fields.hasErrors('measureItemSettingFormList[__${status.index}__].itemName')}"
+						th:errors="*{measureItemSettingFormList[__${status.index}__].itemName}"></span>
+					<hr>
+				</div>
+			</div>
+			<button type="button" onclick="add()">ADD</button>
+			<input type="submit" value="CREATE">
+		</form>
+		<a th:href="@{/home}">BACK</a>
+	</div>
+</body>
+
+</html>

@@ -55,8 +55,5 @@ public class UserDetailsImpl implements UserDetails {
 		return this.user;
 	}
 	
-	public Integer getId() {
-		return this.user.getId();
-	}
 
 }

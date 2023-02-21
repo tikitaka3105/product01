@@ -1,26 +1,28 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{commons/layout}">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{commons/layout}">
 <head>
-<meta charset="UTF-8">
-<title>ホーム画面</title>
+	<meta charset="UTF-8">
+	<title>ホーム画面</title>
 </head>
 <body>
-<div layout:fragment="content">
-	<h2>HOME</h2>
-	<div th:object="${user}">
-		<h3 th:text="'こんにちは、' + *{username} + 'さん'">welcome message</h3>
+	<div layout:fragment="content">
+		<h2>HOME</h2>
+		<h3 th:object="${#authentication.principal.user}" th:text="|こんにちは、*{username} さん|">username</h3>
 		<hr>
-            <div th:if="${measurementItemList != null}" th:each="measurementItem : ${measurementItemList}">
-                  <h4><a th:href="@{/measure/{id}(id=${measurementItem.id})}" th:text="${measurementItem.itemName}"></a></h4>
-            </div>
+		<h3>MEASURE ITEM LIST</h3>
+		<div th:if="${measureTitleList != null}" th:each="measureTitle : ${measureTitleList}" th:object="${measureTitle}">
+			<h4><a th:href="@{/measure/{id}(id=*{id})}" th:text="*{title}"></a>
+			</h4>
+		</div>
+		<label th:if="${measureTitleList == null}" th:text="No Measure Item Registrated"></label>
 	</div>
-	<button type="button" onclick="location.href='/new'">New Measure Item</button>
+	<button type="button" onclick="location.href='/measure_items/new'">Create Measure Item</button>
 	<hr>
 	<form th:action="@{/logout}" method="post">
 		<button type="submit">logout</button>
 	</form>
-</div>
+	</div>
 </body>
+
 </html>

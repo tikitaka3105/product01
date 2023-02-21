@@ -18,6 +18,11 @@ public class UserService {
 	
 	public void userRegistration(String username, String password) {
 		String hashedPassword = passwordEncoder.encode(password);
-		repository.saveAndFlush(new User(username, hashedPassword));
+		User user = new User(username, hashedPassword, "GENERAL");
+		repository.saveAndFlush(user);
+	}
+	
+	public User findByIdWithMeasureTitle(int id) {
+		return repository.findByIdWithMeasureTitle(id);
 	}
 }

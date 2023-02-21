@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{commons/layout}">
+
+<head>
+	<meta charset="UTF-8">
+	<title>記録</title>
+</head>
+
+<body>
+	<div layout:fragment="content">
+		<div th:object="${measureValueForm}">
+			<h2 th:text="*{measureTitle.title}">itemname</h2>
+			<form th:action="@{/measure/{id}(id=*{measureTitle.id})}" method="post">
+				<label>Measure Time</label>
+				<input type="datetime-local" th:field="*{measuredAt}">
+				<br>
+				<div th:each="item, status : ${measureValueForm.measureTitle.measureItemList}">
+					<label th:text="|${item.itemName}: |"></label>
+					<input type="text" th:field="*{measuredValueFormList[__${status.index}__].value}">
+					<br>
+				</div>
+				<button type="submit">record</button>
+			</form>
+		</div>
+		<hr>
+		<h2>Record History</h2>
+		<hr>
+		<button type="button" onclick="location.href='/home'">Back To Home</button>
+	</div>
+</body>
+
+</html>
