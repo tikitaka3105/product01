@@ -8,7 +8,7 @@ import org.springframework.data.repository.query.Param;
 
 import com.product01.demo.entity.MeasuredValue;
 
-public interface MeasuredValueCrudRepository extends JpaRepository<MeasuredValue, Integer> {
+public interface MeasuredValueRepository extends JpaRepository<MeasuredValue, Integer> {
 	@Query(value = "select * from measured_values where measurement_item_id = :measurementItemId", nativeQuery = true)
 	public List<MeasuredValue> findByMeasurementItemId(@Param("measurementItemId") Integer measurementItemId);
 }

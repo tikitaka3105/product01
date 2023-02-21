@@ -4,75 +4,37 @@ import java.sql.Timestamp;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Table(name = "measured_values")
-@Data
-@AllArgsConstructor
-public class MeasuredValue {
+@Getter
+@Setter
+@NoArgsConstructor
+public class MeasuredValue extends CommonColumn{
 	
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	private Integer id;
 	
-	@Column(name = "measurement_item_id")
-	private Integer measurementItemId;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "measure_item_id")
+	private MeasureItem measureItem;
 	
-	@Column(name = "measured_value1")
-	private String measuredValue1;
-	
-	@Column(name = "measured_value2")
-	private String measuredValue2;
-	
-	@Column(name = "measured_value3")
-	private String measuredValue3;
-	
-	@Column(name = "measured_value4")
-	private String measuredValue4;
-	
-	@Column(name = "measured_value5")
-	private String measuredValue5;
-	
-	@Column(name = "measured_value6")
-	private String measuredValue6;
-	
-	@Column(name = "measured_value7")
-	private String measuredValue7;
-	
-	@Column(name = "measured_value8")
-	private String measuredValue8;
-	
-	@Column(name = "measured_value9")
-	private String measuredValue9;
-	
-	@Column(name = "measured_value10")
-	private String measuredValue10;
-	
-	@Column(name = "created_at")
-	private Timestamp createdAt;
-	
-	@Column(name = "updated_at")
-	private Timestamp updatedAt;
-	
-	@Column(name = "deleted_at")
-	private Timestamp deletedAt;
-	
-	@Column(name = "delete_flag")
-	private Boolean deleteFlag;
+	@Column(name = "value")
+	private String value;
 	
 	@Column(name = "measured_at")
 	private Timestamp measuredAt;
 	
-	public MeasuredValue() {
-		this.createdAt = new Timestamp(System.currentTimeMillis());
-		this.updatedAt = new Timestamp(System.currentTimeMillis());
-		this.deleteFlag =false;
-	}
 }

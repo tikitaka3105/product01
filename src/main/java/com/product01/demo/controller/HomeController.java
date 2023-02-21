@@ -8,21 +8,21 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import com.product01.demo.entity.MeasurementItem;
-import com.product01.demo.service.MeasurementItemService;
+import com.product01.demo.entity.MeasureTitle;
+import com.product01.demo.service.MeasureTitleService;
 import com.product01.demo.userDetails.UserDetailsImpl;
 
 @Controller
 public class HomeController {
 	
 	@Autowired
-	private MeasurementItemService measurementItemService;
+	private MeasureTitleService measureTitleService;
+	
 	
 	@GetMapping("/home")
-	public String showHome(@AuthenticationPrincipal UserDetailsImpl user, Model model) {
-		List<MeasurementItem> measurementItemList = measurementItemService.findByUserId(user.getId());
-		model.addAttribute("user", user.getUser());
-		model.addAttribute("measurementItemList", measurementItemList);
+	public String showHome(@AuthenticationPrincipal UserDetailsImpl loginUser, Model model) {
+		List<MeasureTitle> measureTitleList = measureTitleService.findByUserId(loginUser.getUser());
+		model.addAttribute("measureTitleList", measureTitleList);
 		return "home";
 	}
 	
